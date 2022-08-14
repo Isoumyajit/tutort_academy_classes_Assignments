@@ -89,8 +89,20 @@ public class week1_soumyajitChakraborty {
                 System.out.print(n * (n + 1) / 2);
                 break;
             case 10:
+                long number = sc.nextLong();
+                System.out.print(new question_10().isFascinating(number) ? "Fascinating" : "Not Fascinating");
+                break;
+
             case 11:
+                n = sc.nextInt();
+                arr = new int[n];
+                for (int i = 0; i < n; i++)
+                    arr[i] = sc.nextInt();
+                System.out.print(new question_11().getMinimumAddition(arr));
+                break;
+
             default:
+                System.out.print("Please give correct input :( Try again");
 
         }
         System.out.println();
@@ -234,5 +246,46 @@ class question_8 {
                 break;
         }
         return ans;
+    }
+}
+
+class question_10 {
+
+    boolean isFascinating(long n) {
+        return validate(n);
+    }
+
+    private static boolean validate(long n) {
+        String num1 = String.valueOf(n);
+        if (num1.length() <= 2)
+            return false;
+        num1 += String.valueOf(n * 2) + String.valueOf(n * 3);
+        int[] hash = new int[10];
+        hash[0] = 1;
+        for (int i = 0; i < num1.length(); i++)
+            hash[num1.charAt(i) - '0']++;
+        for (int counts : hash) {
+            if (counts > 1 || counts == 0)
+                return false;
+        }
+        return true;
+
+    }
+}
+
+class question_11 {
+
+    long getMinimumAddition(int[] arr) {
+        return findSmallestElemet(arr);
+    }
+
+    private static long findSmallestElemet(int[] arr) {
+        long leftSum = 0;
+        long rightSum = 0;
+        for (int i = 0, j = arr.length - 1; i < j; i++, j--) {
+            leftSum += arr[i];
+            rightSum += arr[j];
+        }
+        return Math.abs(rightSum - leftSum);
     }
 }
