@@ -1,7 +1,7 @@
 package class_2.Soumyajit;
 
 public class transpose {
-    public int[][] transpose(int[][] matrix) {
+    public int[][] transposeMat(int[][] matrix) {
         int[][] ans = new int[matrix[0].length][matrix.length];
         for (int i = 0; i < matrix[0].length; i++) {
             for (int j = 0; j < matrix.length; j++) {
